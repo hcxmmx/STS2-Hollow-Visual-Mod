@@ -1,10 +1,12 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace Hcxmmx.HollowKnightMod.Scripts;
 
 public static class HollowGlobals
 {
+    public static bool EnableDebugLog = false;
     public static bool IsInShop = false;
     public const string TargetCharacterId = "NECROBINDER";
     public const string HarmonyId = "sts2.hcxmmx.hollowknight.visuals";
@@ -53,11 +55,14 @@ public static class HollowGlobals
         { "Dart_Shoot", GD.Load<PackedScene>("res://Hcxmmx_Hollow_Knight_Skin/Scenes/VFX_SwordRain.tscn") }
     };
 
+    public static readonly string[] SeniorSkillKeys = SeniorSkillMap.Keys.ToArray();
+
     public static bool IsKnightDead = false;
 
     // 极其方便的日志输出
     public static void Log(string message)
     {
+        if (!EnableDebugLog) return;
         GD.Print($"[Hollow_Radar] 📡 {message}");
     }
 

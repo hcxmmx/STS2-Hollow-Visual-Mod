@@ -17,9 +17,23 @@ internal static class NCreature_Ready_Patch
 {
     public static readonly System.Collections.Generic.Dictionary<Creature, NCreature> CreatureRegistry = new();
 
+    public static void CleanupRegistry()
+    {
+        if (CreatureRegistry.Count == 0) return;
+
+        foreach (var entry in CreatureRegistry.ToList())
+        {
+            if (!GodotObject.IsInstanceValid(entry.Value))
+            {
+                CreatureRegistry.Remove(entry.Key);
+            }
+        }
+    }
+
     private static void Postfix(NCreature __instance)
     {
         if (__instance == null) return;
+        CleanupRegistry();
         var entity = __instance.Entity;
         if (entity == null) return;
         
@@ -272,7 +286,8 @@ internal static class AttackCommand_FromOsty_Patch
         if (osty?.Monster is not MegaCrit.Sts2.Core.Models.Monsters.Osty) return;
 
         // 1. 抽签
-        var skills = HollowGlobals.SeniorSkillMap.Keys.ToArray();
+        var skills = HollowGlobals.SeniorSkillKeys;
+        if (skills.Length == 0) return;
         string rolledSkill = skills[HollowGlobals.Rng.Next(skills.Length)];
         
         // 2. 直接从字典里拿到准备好的“专属图纸”！
@@ -325,6 +340,8 @@ internal static class CombatManager_EndCombatInternal_Patch
     private static void Prefix()
     {
         HollowGlobals.Log("🏆 战斗结束，小骑士准备切换胜利姿态...");
+
+        NCreature_Ready_Patch.CleanupRegistry();
         
         // 🚨 加上 .ToList()，防止在遍历字典的时候字典被其他代码修改导致冲突
         foreach (var entry in NCreature_Ready_Patch.CreatureRegistry.ToList())
@@ -351,5 +368,7 @@ internal static class CombatManager_EndCombatInternal_Patch
                 }
             }
         }
+
+        NCreature_Ready_Patch.CreatureRegistry.Clear();
     }
 }

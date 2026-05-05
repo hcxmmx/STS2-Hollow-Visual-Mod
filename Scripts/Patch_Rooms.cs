@@ -47,9 +47,13 @@ internal static class NMerchantRoom_Ready_Patch
 
             targetChild.Hide(); 
 
-            var knightShopNode = HollowGlobals.KnightScenePreloaded.Instantiate<Node2D>();
-            knightShopNode.Name = $"KnightShopMecha_{i}";
-            characterContainer.AddChild(knightShopNode);
+            var knightShopNode = characterContainer.GetNodeOrNull<Node2D>($"KnightShopMecha_{i}");
+            if (knightShopNode == null)
+            {
+                knightShopNode = HollowGlobals.KnightScenePreloaded.Instantiate<Node2D>();
+                knightShopNode.Name = $"KnightShopMecha_{i}";
+                characterContainer.AddChild(knightShopNode);
+            }
 
             knightShopNode.Position = targetChild.Position;
             knightShopNode.Scale = new Vector2(1.0f, 1.0f); 
@@ -63,7 +67,30 @@ internal static class NMerchantRoom_Ready_Patch
 [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Rooms.NMerchantRoom), "HideScreen")]
 internal static class NMerchantRoom_HideScreen_Patch
 {
-    private static void Prefix() { HollowGlobals.IsInShop = false; }
+    private static void Prefix(MegaCrit.Sts2.Core.Nodes.Rooms.NMerchantRoom __instance)
+    {
+        HollowGlobals.IsInShop = false;
+
+        var playerVisuals = Traverse.Create(__instance).Field("_playerVisuals").GetValue<System.Collections.IList>();
+        if (playerVisuals != null)
+        {
+            foreach (var child in playerVisuals)
+            {
+                if (child is CanvasItem canvasItem) canvasItem.Show();
+            }
+        }
+
+        var characterContainer = __instance.GetNodeOrNull<Control>("%CharacterContainer");
+        if (characterContainer == null) return;
+
+        foreach (Node child in characterContainer.GetChildren())
+        {
+            if (child.Name.ToString().StartsWith("KnightShopMecha_", StringComparison.Ordinal))
+            {
+                child.QueueFree();
+            }
+        }
+    }
 }
 
 // ==========================================
@@ -122,9 +149,13 @@ internal static class NFakeMerchant_Ready_Patch
 
             targetChild.Hide();
 
-            var knightShopNode = HollowGlobals.KnightScenePreloaded.Instantiate<Node2D>();
-            knightShopNode.Name = $"KnightShopMecha_Fake_{i}";
-            characterContainer.AddChild(knightShopNode);
+            var knightShopNode = characterContainer.GetNodeOrNull<Node2D>($"KnightShopMecha_Fake_{i}");
+            if (knightShopNode == null)
+            {
+                knightShopNode = HollowGlobals.KnightScenePreloaded.Instantiate<Node2D>();
+                knightShopNode.Name = $"KnightShopMecha_Fake_{i}";
+                characterContainer.AddChild(knightShopNode);
+            }
 
             knightShopNode.Position = targetChild.Position;
             knightShopNode.Scale = new Vector2(1.0f, 1.0f);
@@ -138,7 +169,30 @@ internal static class NFakeMerchant_Ready_Patch
 [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Events.Custom.NFakeMerchant), "HideScreen")]
 internal static class NFakeMerchant_HideScreen_Patch
 {
-    private static void Prefix() { HollowGlobals.IsInShop = false; }
+    private static void Prefix(MegaCrit.Sts2.Core.Nodes.Events.Custom.NFakeMerchant __instance)
+    {
+        HollowGlobals.IsInShop = false;
+
+        var playerVisuals = Traverse.Create(__instance).Field("_playerVisuals").GetValue<System.Collections.IList>();
+        if (playerVisuals != null)
+        {
+            foreach (var child in playerVisuals)
+            {
+                if (child is CanvasItem canvasItem) canvasItem.Show();
+            }
+        }
+
+        var characterContainer = __instance.GetNodeOrNull<Control>("%CharacterContainer");
+        if (characterContainer == null) return;
+
+        foreach (Node child in characterContainer.GetChildren())
+        {
+            if (child.Name.ToString().StartsWith("KnightShopMecha_Fake_", StringComparison.Ordinal))
+            {
+                child.QueueFree();
+            }
+        }
+    }
 }
 
 // ==========================================
@@ -194,9 +248,13 @@ internal static class NRestSiteRoom_Ready_Patch
                 }
             }
 
-            var knightCampNode = HollowGlobals.KnightScenePreloaded.Instantiate<Node2D>();
-            knightCampNode.Name = $"KnightCampMecha_{i}";
-            container.AddChild(knightCampNode);
+            var knightCampNode = container.GetNodeOrNull<Node2D>($"KnightCampMecha_{i}");
+            if (knightCampNode == null)
+            {
+                knightCampNode = HollowGlobals.KnightScenePreloaded.Instantiate<Node2D>();
+                knightCampNode.Name = $"KnightCampMecha_{i}";
+                container.AddChild(knightCampNode);
+            }
 
             knightCampNode.Scale = new Vector2(1.0f, 1.0f);
             knightCampNode.Position = new Vector2(0, 50); 
@@ -207,13 +265,17 @@ internal static class NRestSiteRoom_Ready_Patch
             if (a1 != null)
             {
                 // 🎇 极其丝滑的链式接力：看地图 -> 写地图
-                a1.AnimationFinished += (animName) =>
+                if (!a1.HasMeta("CampAnimHooked"))
                 {
-                    if (animName == "Sit_Map_Look")
+                    a1.SetMeta("CampAnimHooked", true);
+                    a1.AnimationFinished += (animName) =>
                     {
-                        a1.Play("Sit_Map_Write");
-                    }
-                };
+                        if (animName == "Sit_Map_Look")
+                        {
+                            a1.Play("Sit_Map_Write");
+                        }
+                    };
+                }
                 
                 a1.Play("Sit_Map_Look");
             }
@@ -225,9 +287,35 @@ internal static class NRestSiteRoom_Ready_Patch
 [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Rooms.NRestSiteRoom), "OnProceedButtonReleased")]
 internal static class NRestSiteRoom_Exit_Patch
 {
-    private static void Prefix() 
+    private static void Prefix(MegaCrit.Sts2.Core.Nodes.Rooms.NRestSiteRoom __instance) 
     { 
         HollowGlobals.IsInShop = false; 
+
+        var runState = Traverse.Create(__instance).Field("_runState").GetValue();
+        if (runState != null)
+        {
+            var players = Traverse.Create(runState).Property("Players").GetValue<System.Collections.IList>() ?? Traverse.Create(runState).Field("Players").GetValue<System.Collections.IList>();
+            if (players != null)
+            {
+                for (int i = 0; i < players.Count; i++)
+                {
+                    string containerPath = $"BgContainer/Character_{i + 1}";
+                    var container = __instance.GetNodeOrNull<Control>(containerPath);
+                    if (container == null) continue;
+
+                    for (int j = 0; j < container.GetChildCount(); j++)
+                    {
+                        if (container.GetChild(j) is CanvasItem canvasItem)
+                        {
+                            canvasItem.Modulate = new Color(1f, 1f, 1f, 1f);
+                        }
+                    }
+
+                    var campNode = container.GetNodeOrNull<Node2D>($"KnightCampMecha_{i}");
+                    campNode?.QueueFree();
+                }
+            }
+        }
         
         // 🚨 极其干脆的离场洗地：捕捉离开篝火的瞬间，把前辈的 Sprite 强行关掉
         if (NRestSiteRoom_Ready_Patch.CurrentCampKnightNode != null && GodotObject.IsInstanceValid(NRestSiteRoom_Ready_Patch.CurrentCampKnightNode))

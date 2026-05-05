@@ -35,15 +35,25 @@ internal static class NCharacterSelectScreen_SelectCharacter_Patch
             // 凭空捏造一个相框，极其优雅地省去了进 Godot 建场景的麻烦！
             if (HollowGlobals.SelectBigTexture != null)
             {
-                var textureRect = new TextureRect
+                var existingRect = bgContainer.GetNodeOrNull<TextureRect>("HollowKnight_SelectBg");
+                if (existingRect != null)
                 {
-                    Texture = HollowGlobals.SelectBigTexture,
-                    ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-                    StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, // 保持比例居中，绝对不会被拉伸变形
-                    MouseFilter = Control.MouseFilterEnum.Ignore
-                };
-                textureRect.SetAnchorsPreset(Control.LayoutPreset.FullRect);
-                bgContainer.AddChild(textureRect);
+                    existingRect.Texture = HollowGlobals.SelectBigTexture;
+                    existingRect.Show();
+                }
+                else
+                {
+                    var textureRect = new TextureRect
+                    {
+                        Name = "HollowKnight_SelectBg",
+                        Texture = HollowGlobals.SelectBigTexture,
+                        ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
+                        StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, // 保持比例居中，绝对不会被拉伸变形
+                        MouseFilter = Control.MouseFilterEnum.Ignore
+                    };
+                    textureRect.SetAnchorsPreset(Control.LayoutPreset.FullRect);
+                    bgContainer.AddChild(textureRect);
+                }
             }
         }
 
