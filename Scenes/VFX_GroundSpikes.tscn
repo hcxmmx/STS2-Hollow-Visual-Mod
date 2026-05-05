@@ -1,0 +1,150 @@
+[gd_scene load_steps=19 format=3 uid="uid://wvvpkphes0o4"]
+
+[ext_resource type="Texture2D" uid="uid://cpxc20b7hvhn" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_HK_Prime_Dart_Antic/HK Prime Cln_HK_Prime_Dart_Antic0000.png" id="1_ejwef"]
+[ext_resource type="Texture2D" uid="uid://du5ep0sd1q7nq" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0000.png" id="1_l305t"]
+[ext_resource type="Texture2D" uid="uid://chbri7wo3i68c" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0001.png" id="2_bw2xv"]
+[ext_resource type="Texture2D" uid="uid://d2mgtaa6fuow8" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_HK_Prime_Dart_Antic/HK Prime Cln_HK_Prime_Dart_Antic0001.png" id="2_fpse0"]
+[ext_resource type="Texture2D" uid="uid://wq2s4i0e7j63" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_HK_Prime_Dart_Antic/HK Prime Cln_HK_Prime_Dart_Antic0002.png" id="3_gvidt"]
+[ext_resource type="Texture2D" uid="uid://q4xlvjwnpv4s" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0002.png" id="3_i7m38"]
+[ext_resource type="Texture2D" uid="uid://cdlp0fpk60j8c" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0003.png" id="4_wxy1u"]
+[ext_resource type="Texture2D" uid="uid://cl7mmia5y560g" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0004.png" id="5_sa3xb"]
+[ext_resource type="Texture2D" uid="uid://coqq1gyt4waah" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0005.png" id="6_hm2d6"]
+[ext_resource type="Texture2D" uid="uid://b6xw51eco387y" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0006.png" id="7_qk6op"]
+[ext_resource type="Texture2D" uid="uid://nst1wr8talju" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0007.png" id="8_ejwef"]
+[ext_resource type="Texture2D" uid="uid://y44qboybplho" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0008.png" id="9_fpse0"]
+[ext_resource type="Texture2D" uid="uid://b4tbc28n0pfgb" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0009.png" id="10_gvidt"]
+[ext_resource type="Texture2D" uid="uid://cjadw6rca0pio" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/VFX_GroundSpikes/HK Prime Cln_down_slam_blasts/HK Prime Cln_down_slam_blasts0010.png" id="11_3p5bb"]
+
+[sub_resource type="Animation" id="Animation_xq1c1"]
+resource_name = "Play"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker2D/AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Slam_Blasts"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker2D/AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 10]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.8),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker2D/AnimatedSprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k6dlv"]
+_data = {
+&"Play": SubResource("Animation_xq1c1")
+}
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_x73vk"]
+blend_mode = 1
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ob6tj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ejwef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_fpse0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gvidt")
+}],
+"loop": false,
+"name": &"Dart_1",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_l305t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bw2xv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i7m38")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wxy1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sa3xb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_hm2d6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qk6op")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ejwef")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_fpse0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_gvidt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_3p5bb")
+}],
+"loop": false,
+"name": &"Slam_Blasts",
+"speed": 12.0
+}]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_k6dlv")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(788, -340)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Marker2D"]
+material = SubResource("CanvasItemMaterial_x73vk")
+sprite_frames = SubResource("SpriteFrames_ob6tj")
+animation = &"Slam_Blasts"
+frame = 10
+frame_progress = 1.0

@@ -1,0 +1,13 @@
+# 💥 拦截所有极其占空间的图片和音频（代码库不需要它们）
+*.png
+*.jpg
+*.jpeg
+*.wav
+*.mp3
+*.ogg
+*.import
+*.cache
+*.uid
+# 💥 拦截外层的工作区草稿文件夹（根据你的目录结构添加）
+01_Raw_Materials/
+02_Scripts_Tools/

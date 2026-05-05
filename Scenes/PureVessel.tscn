@@ -1,0 +1,919 @@
+[gd_scene load_steps=103 format=3 uid="uid://duvk38qt3j5o8"]
+
+[ext_resource type="Texture2D" uid="uid://ct3ja8yw3v8s4" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0000.png" id="1_e7h6p"]
+[ext_resource type="Texture2D" uid="uid://b03gi85nfedb2" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_tendril/HK Prime Cln_tendril0000.png" id="1_ude7t"]
+[ext_resource type="Texture2D" uid="uid://bh6ail71glodu" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_tendril/HK Prime Cln_tendril0001.png" id="2_1d77w"]
+[ext_resource type="Texture2D" uid="uid://bemjol2spdtu4" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0001.png" id="2_17g1q"]
+[ext_resource type="Texture2D" uid="uid://dswu3q4p4eope" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0002.png" id="3_0v1ym"]
+[ext_resource type="Texture2D" uid="uid://dn64k3q04k2tc" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_tendril/HK Prime Cln_tendril0002.png" id="3_cjnf6"]
+[ext_resource type="Texture2D" uid="uid://ba7jyko3odyko" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_tendril/HK Prime Cln_tendril0003.png" id="4_rhrc3"]
+[ext_resource type="Texture2D" uid="uid://cy1w7cturlmbm" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0003.png" id="4_u0bpp"]
+[ext_resource type="Texture2D" uid="uid://cgfej08fjv07w" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_tendril/HK Prime Cln_tendril0004.png" id="5_afd5w"]
+[ext_resource type="Texture2D" uid="uid://c526ub7kwjsp2" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0004.png" id="5_jb7jv"]
+[ext_resource type="Texture2D" uid="uid://bbdtvh224pojy" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0005.png" id="6_1wrpw"]
+[ext_resource type="Texture2D" uid="uid://chjkjoxsbg3yv" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_tendril/HK Prime Cln_tendril0005.png" id="6_desda"]
+[ext_resource type="Texture2D" uid="uid://bgxfok2iijqk7" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0006.png" id="7_ibybj"]
+[ext_resource type="Texture2D" uid="uid://cbishy5148iv" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_tendril/HK Prime Cln_tendril0006.png" id="7_jsb0l"]
+[ext_resource type="Texture2D" uid="uid://bm4ap7y30u8jp" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0007.png" id="8_mmq2u"]
+[ext_resource type="Texture2D" uid="uid://2r44neofg60f" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_tendril/HK Prime Cln_tendril0007.png" id="8_oeph7"]
+[ext_resource type="Texture2D" uid="uid://cfsa5pcderbmy" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_counter/HK Prime Cln_counter0008.png" id="9_0yth8"]
+[ext_resource type="Texture2D" uid="uid://bknof7hxxfaqk" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_shot_effect/HK Prime Cln_shot_effect0000.png" id="9_lv6hg"]
+[ext_resource type="Texture2D" uid="uid://cl4iwypbdtfos" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_dash/HK Prime Cln_dash0000.png" id="10_dn6cy"]
+[ext_resource type="Texture2D" uid="uid://bou2ivmw8lg4k" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_shot_effect/HK Prime Cln_shot_effect0001.png" id="10_o0cl0"]
+[ext_resource type="Texture2D" uid="uid://bt2ysbb1jqyf4" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0000.png" id="10_poru8"]
+[ext_resource type="Texture2D" uid="uid://0uhdceieexaw" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_dash/HK Prime Cln_dash0001.png" id="11_2f2nb"]
+[ext_resource type="Texture2D" uid="uid://dwehqdesud7qr" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0001.png" id="11_ipc31"]
+[ext_resource type="Texture2D" uid="uid://knlxj2fthhb1" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_shot_effect/HK Prime Cln_shot_effect0002.png" id="11_y1sxb"]
+[ext_resource type="Texture2D" uid="uid://df3lr84apmhot" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_VFX/HK Prime Cln_shot_effect/HK Prime Cln_shot_effect0003.png" id="12_0sx66"]
+[ext_resource type="Texture2D" uid="uid://do6nda7og06nw" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_dash/HK Prime Cln_dash0002.png" id="12_npm81"]
+[ext_resource type="Texture2D" uid="uid://d3mw60i4a0i0x" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0002.png" id="12_uum18"]
+[ext_resource type="Texture2D" uid="uid://dvo8eisqhfyfx" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_dash/HK Prime Cln_dash0003.png" id="13_3vhvq"]
+[ext_resource type="Texture2D" uid="uid://0ctiuvvmnmv2" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0003.png" id="13_pxsba"]
+[ext_resource type="Texture2D" uid="uid://cusg22nrt3lp" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_dash/HK Prime Cln_dash0004.png" id="14_012r5"]
+[ext_resource type="Texture2D" uid="uid://bwoyyw6p625e1" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0004.png" id="14_y043x"]
+[ext_resource type="Texture2D" uid="uid://nhy8q3js4qnd" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_dash/HK Prime Cln_dash0005.png" id="15_ivkf3"]
+[ext_resource type="Texture2D" uid="uid://cv80cmsmkhah5" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0005.png" id="15_t52s4"]
+[ext_resource type="Texture2D" uid="uid://dml17ef0p4sjd" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0006.png" id="16_l64ql"]
+[ext_resource type="Texture2D" uid="uid://doh67k1ao4djj" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_dash/HK Prime Cln_dash0006.png" id="16_pjnaq"]
+[ext_resource type="Texture2D" uid="uid://coavdbbltfsc4" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0000.png" id="17_2f2nb"]
+[ext_resource type="Texture2D" uid="uid://d22b378d66ou1" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_idle/HK Prime Cln_idle0000.png" id="17_rtmr2"]
+[ext_resource type="Texture2D" uid="uid://b1nuanp4jcmcr" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0007.png" id="17_s0sq7"]
+[ext_resource type="Texture2D" uid="uid://bngx3vcvtugbk" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_HK_white_dart_shoot/HK Prime Cln_HK_white_dart_shoot0008.png" id="18_gonlm"]
+[ext_resource type="Texture2D" uid="uid://ecx8kw2ej0mt" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_idle/HK Prime Cln_idle0001.png" id="18_molvd"]
+[ext_resource type="Texture2D" uid="uid://cu35ljhvptk61" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0001.png" id="18_npm81"]
+[ext_resource type="Texture2D" uid="uid://dhkljp64hpwel" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0002.png" id="19_3vhvq"]
+[ext_resource type="Texture2D" uid="uid://u34n44vyy5qb" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_idle/HK Prime Cln_idle0002.png" id="19_ge2su"]
+[ext_resource type="Texture2D" uid="uid://dsprvydgq3d1f" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0003.png" id="20_012r5"]
+[ext_resource type="Texture2D" uid="uid://p17cj0oh1vkj" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_idle/HK Prime Cln_idle0003.png" id="20_poru8"]
+[ext_resource type="Texture2D" uid="uid://4jttture7521" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_idle/HK Prime Cln_idle0004.png" id="21_ipc31"]
+[ext_resource type="Texture2D" uid="uid://2n5ys7dws1b7" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0004.png" id="21_ivkf3"]
+[ext_resource type="Texture2D" uid="uid://b74x30x3kgrte" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0005.png" id="22_pjnaq"]
+[ext_resource type="Texture2D" uid="uid://3jyy5dv5asfo" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0000.png" id="22_uum18"]
+[ext_resource type="Texture2D" uid="uid://csdj2ydwh5e7c" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0001.png" id="23_pxsba"]
+[ext_resource type="Texture2D" uid="uid://banwhxt0wpv1n" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0006.png" id="23_rtmr2"]
+[ext_resource type="Texture2D" uid="uid://b76gijdtvmk88" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0007.png" id="24_molvd"]
+[ext_resource type="Texture2D" uid="uid://ck37lbcyc6y5p" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0002.png" id="24_y043x"]
+[ext_resource type="Texture2D" uid="uid://bhyk1nkvalgx" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0008.png" id="25_ge2su"]
+[ext_resource type="Texture2D" uid="uid://ct0kwp0n6ye72" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0003.png" id="25_t52s4"]
+[ext_resource type="Texture2D" uid="uid://c0rjvfx4tjjov" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0004.png" id="26_l64ql"]
+[ext_resource type="Texture2D" uid="uid://cqibmg4hlq4tc" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_down_slam/HK Prime Cln_down_slam0009.png" id="26_poru8"]
+[ext_resource type="Texture2D" uid="uid://yn7lg605321l" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0005.png" id="27_s0sq7"]
+[ext_resource type="Texture2D" uid="uid://dcavlfjbs6l5p" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0006.png" id="28_gonlm"]
+[ext_resource type="Texture2D" uid="uid://ckdsr582bq2y8" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0007.png" id="29_tfgaj"]
+[ext_resource type="Texture2D" uid="uid://b0xg8p7mmig58" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0008.png" id="30_r7l6r"]
+[ext_resource type="Texture2D" uid="uid://6bdwfioufv57" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0009.png" id="31_ogos3"]
+[ext_resource type="Texture2D" uid="uid://cra20py74y1xv" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0010.png" id="32_i1e7o"]
+[ext_resource type="Texture2D" uid="uid://kx7wmjwb2or3" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_roar/HK Prime Cln_roar0011.png" id="33_j1c7m"]
+[ext_resource type="Texture2D" uid="uid://iodldro586cw" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0000.png" id="34_whq7b"]
+[ext_resource type="Texture2D" uid="uid://ckt6mcgbv34is" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0001.png" id="35_41vqb"]
+[ext_resource type="Texture2D" uid="uid://bcmmxt0bsj5ig" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0002.png" id="36_jac6t"]
+[ext_resource type="Texture2D" uid="uid://dlc6a26j4raiq" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0003.png" id="37_dppuu"]
+[ext_resource type="Texture2D" uid="uid://dn6ecf4vb0hxh" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0004.png" id="38_q55e3"]
+[ext_resource type="Texture2D" uid="uid://k244aq76ocaw" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0005.png" id="39_pxwc4"]
+[ext_resource type="Texture2D" uid="uid://cslgoqmm1t3fm" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0006.png" id="40_60f8t"]
+[ext_resource type="Texture2D" uid="uid://dkr6v25am5wiq" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0007.png" id="41_ude7t"]
+[ext_resource type="Texture2D" uid="uid://bobw1vj5cx5vr" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0008.png" id="42_1d77w"]
+[ext_resource type="Texture2D" uid="uid://bgt1sn4mv3bjd" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0009.png" id="43_cjnf6"]
+[ext_resource type="Texture2D" uid="uid://c3harq4bwllmf" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0010.png" id="44_rhrc3"]
+[ext_resource type="Texture2D" uid="uid://t71r34t82f1u" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0011.png" id="45_afd5w"]
+[ext_resource type="Texture2D" uid="uid://cfeajsu4lochf" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0012.png" id="46_desda"]
+[ext_resource type="Texture2D" uid="uid://d0bu7pbn0bamc" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0013.png" id="47_jsb0l"]
+[ext_resource type="Texture2D" uid="uid://cnegp5on0v0g4" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0014.png" id="48_oeph7"]
+[ext_resource type="Texture2D" uid="uid://bl6h8ysd7nbp" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0015.png" id="49_lv6hg"]
+[ext_resource type="Texture2D" uid="uid://dv8doj3o2fxvu" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_slashes/HK Prime Cln_slashes0016.png" id="50_o0cl0"]
+[ext_resource type="Texture2D" uid="uid://qxlbbnhjdqsj" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0000.png" id="53_tfgaj"]
+[ext_resource type="Texture2D" uid="uid://drlmurjnvtb4e" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0001.png" id="54_r7l6r"]
+[ext_resource type="Texture2D" uid="uid://dupurocn8mv7n" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0002.png" id="55_ogos3"]
+[ext_resource type="Texture2D" uid="uid://b8158dub4k7gs" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0003.png" id="56_i1e7o"]
+[ext_resource type="Texture2D" uid="uid://dm51jrfkxb17d" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0004.png" id="57_j1c7m"]
+[ext_resource type="Texture2D" uid="uid://olnyv0rfe21x" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0005.png" id="58_whq7b"]
+[ext_resource type="Texture2D" uid="uid://pymmkokjj70o" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0006.png" id="59_41vqb"]
+[ext_resource type="Texture2D" uid="uid://q2lqci72c32v" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0007.png" id="60_jac6t"]
+[ext_resource type="Texture2D" uid="uid://dnutru1rt51uc" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Prime_Body/HK Prime Cln_shoot/HK Prime Cln_shoot0008.png" id="61_dppuu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_evh77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ude7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1d77w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cjnf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_rhrc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_afd5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_desda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jsb0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_oeph7")
+}],
+"loop": false,
+"name": &"Tendril",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4piiy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_lv6hg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_o0cl0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_y1sxb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_0sx66")
+}],
+"loop": false,
+"name": &"Shot",
+"speed": 8.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y1sxb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_e7h6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_17g1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0v1ym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_u0bpp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_jb7jv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_1wrpw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ibybj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_mmq2u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_0yth8")
+}],
+"loop": false,
+"name": &"Counter",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_poru8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ipc31")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_uum18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_pxsba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_y043x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_t52s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_l64ql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_s0sq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_gonlm")
+}],
+"loop": false,
+"name": &"Dart_Shoot",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_dn6cy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2f2nb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_npm81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_3vhvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_012r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_ivkf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_pjnaq")
+}],
+"loop": false,
+"name": &"Dash",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_2f2nb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_npm81")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3vhvq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_012r5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ivkf3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_pjnaq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_rtmr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_molvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ge2su")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_poru8")
+}],
+"loop": false,
+"name": &"Down_Slam",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_rtmr2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_molvd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_ge2su")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_poru8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ipc31")
+}],
+"loop": false,
+"name": &"Idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("22_uum18")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_pxsba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_y043x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_t52s4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_l64ql")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_s0sq7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_gonlm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_tfgaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_r7l6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ogos3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_i1e7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_j1c7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_tfgaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_r7l6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_ogos3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_i1e7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_j1c7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_gonlm")
+}],
+"loop": false,
+"name": &"Roar",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("53_tfgaj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("54_r7l6r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("55_ogos3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("56_i1e7o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("57_j1c7m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("58_whq7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("59_41vqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("60_jac6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("61_dppuu")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("34_whq7b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_41vqb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_jac6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_dppuu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_q55e3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_pxwc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_60f8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("41_ude7t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("42_1d77w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("43_cjnf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("44_rhrc3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("45_afd5w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("46_desda")
+}, {
+"duration": 1.0,
+"texture": ExtResource("47_jsb0l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("48_oeph7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("49_lv6hg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("50_o0cl0")
+}],
+"loop": false,
+"name": &"Slashes",
+"speed": 15.0
+}]
+
+[sub_resource type="Animation" id="Animation_jb7jv"]
+resource_name = "Counter"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prime_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Counter"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prime_Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prime_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tfgaj"]
+resource_name = "Dart_Shoot"
+length = 0.75
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prime_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dart_Shoot"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prime_Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prime_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(200, 100)]
+}
+
+[sub_resource type="Animation" id="Animation_u0bpp"]
+resource_name = "Dash"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prime_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Dash"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prime_Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 6]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prime_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2f2nb"]
+resource_name = "Down_Slam"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prime_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Down_Slam"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prime_Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 9]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prime_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_e7h6p"]
+resource_name = "Idle"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prime_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prime_Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prime_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tendril:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shot:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0v1ym"]
+resource_name = "Roar"
+length = 1.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prime_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Roar"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prime_Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 17]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prime_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1wrpw"]
+resource_name = "Slashes"
+length = 1.0667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prime_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Slashes"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prime_Body:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.0667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 16]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prime_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_myuo0"]
+resource_name = "Shoot"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Prime_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Shoot"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Prime_Body:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Prime_Body:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Shot:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.45289668),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Shot"]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Shot:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.45289668),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(506, 241)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Shot:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.45289668, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 3]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Tendril:animation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.45238495),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Tendril"]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Tendril:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.45238495),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(650, 86)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Tendril:frame")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0.45238495, 0.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 7]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Shot:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.46, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Tendril:visible")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.46, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibybj"]
+_data = {
+&"Counter": SubResource("Animation_jb7jv"),
+&"Dart_Shoot": SubResource("Animation_tfgaj"),
+&"Dash": SubResource("Animation_u0bpp"),
+&"Down_Slam": SubResource("Animation_2f2nb"),
+&"Idle": SubResource("Animation_e7h6p"),
+&"Roar": SubResource("Animation_0v1ym"),
+&"Shoot": SubResource("Animation_myuo0"),
+&"Slashes": SubResource("Animation_1wrpw")
+}
+
+[node name="PureVessel" type="Node2D"]
+
+[node name="Marker_Prime" type="Marker2D" parent="."]
+position = Vector2(300, -265)
+
+[node name="Tendril" type="AnimatedSprite2D" parent="Marker_Prime"]
+visible = false
+position = Vector2(650, 86)
+sprite_frames = SubResource("SpriteFrames_evh77")
+animation = &"Tendril"
+
+[node name="Shot" type="AnimatedSprite2D" parent="Marker_Prime"]
+visible = false
+position = Vector2(506, 241)
+sprite_frames = SubResource("SpriteFrames_4piiy")
+animation = &"Shot"
+
+[node name="Prime_Body" type="AnimatedSprite2D" parent="Marker_Prime"]
+sprite_frames = SubResource("SpriteFrames_y1sxb")
+animation = &"Counter"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Marker_Prime")
+libraries = {
+&"": SubResource("AnimationLibrary_ibybj")
+}
