@@ -70,7 +70,14 @@ internal static class NMerchantRoom_HideScreen_Patch
     private static void Prefix(MegaCrit.Sts2.Core.Nodes.Rooms.NMerchantRoom __instance)
     {
         HollowGlobals.IsInShop = false;
+    }
+}
 
+[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Rooms.NMerchantRoom), "_ExitTree")]
+internal static class NMerchantRoom_ExitTree_Patch
+{
+    private static void Prefix(MegaCrit.Sts2.Core.Nodes.Rooms.NMerchantRoom __instance)
+    {
         var playerVisuals = Traverse.Create(__instance).Field("_playerVisuals").GetValue<System.Collections.IList>();
         if (playerVisuals != null)
         {
@@ -93,9 +100,7 @@ internal static class NMerchantRoom_HideScreen_Patch
     }
 }
 
-// ==========================================
-// 🎭 假商人雷达：极其严密的战备嗅探
-// ==========================================
+//假商人替换部分
 [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Events.Custom.NFakeMerchant), nameof(MegaCrit.Sts2.Core.Nodes.Events.Custom.NFakeMerchant._Ready))]
 internal static class NFakeMerchant_Ready_Patch
 {
@@ -104,67 +109,39 @@ internal static class NFakeMerchant_Ready_Patch
         HollowGlobals.Log("\n====== 🎭 侦测到进入假商人房间！小骑士开始思考！ ======");
         HollowGlobals.IsInShop = true; 
 
-        var players = Traverse.Create(__instance).Field("_players").GetValue<System.Collections.IList>();
-        var playerVisuals = Traverse.Create(__instance).Field("_playerVisuals").GetValue<System.Collections.IList>();
-        if (players == null || playerVisuals == null || players.Count != playerVisuals.Count) return;
-
+        // 1. 极其精准地定位到容器
         var characterContainer = __instance.GetNodeOrNull<Control>("%CharacterContainer");
         if (characterContainer == null) return;
 
-        // 🚨 终极安全锁：极其严格的战备状态嗅探 (防假商人图穷匕见！)
-        var theEvent = Traverse.Create(__instance).Field("_event").GetValue();
-        if (theEvent != null)
+        // 2. 极其暴力地直接抓取原模型 (直接找叫 Necrobinder 的节点)
+        var originalVisual = characterContainer.GetNodeOrNull<Node2D>("Necrobinder");
+        if (originalVisual == null)
         {
-            bool isFighting = Traverse.Create(theEvent).Property("StartedFight").GetValue<bool>() || 
-                              Traverse.Create(theEvent).Field("StartedFight").GetValue<bool>();
-            if (isFighting)
-            {
-                HollowGlobals.Log("🚨 战术拦截！假商人图穷匕见，放弃注入商店机甲，将舞台交还给战斗核心！");
-                return; // 极其冷酷地撤退！
-            }
+            HollowGlobals.Log("队伍里不是死灵法师，保留原版队伍！");
+            return;
         }
 
-        if (HollowGlobals.KnightScenePreloaded == null) return;
+        // 3. 极其无情地隐藏骨妹
+        originalVisual.Hide();
 
-        for (int i = 0; i < players.Count; i++)
+        // 4. 极其熟练地召唤咱们的小骑士
+        var knightShopNode = characterContainer.GetNodeOrNull<Node2D>("KnightShopMecha_Fake");
+        if (knightShopNode == null)
         {
-            // 🚨 极其优雅的幽灵抓取法，彻底无视命名空间壁垒！
-            string charId = "";
-            var playerTraverse = Traverse.Create(players[i]);
-            var character = playerTraverse.Property("Character").GetValue() ?? playerTraverse.Field("Character").GetValue();
-
-            if (character != null)
-            {
-                var idObj = Traverse.Create(character).Property("Id").GetValue() ?? Traverse.Create(character).Field("Id").GetValue();
-                if (idObj != null)
-                {
-                    charId = Traverse.Create(idObj).Property("Entry").GetValue<string>() ?? Traverse.Create(idObj).Field("Entry").GetValue<string>() ?? "";
-                }
-            }
-
-            if (!string.Equals(charId, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase)) continue;
-
-            var targetChild = playerVisuals[i] as Node2D;
-            if (targetChild == null) continue;
-
-            targetChild.Hide();
-
-            var knightShopNode = characterContainer.GetNodeOrNull<Node2D>($"KnightShopMecha_Fake_{i}");
-            if (knightShopNode == null)
-            {
-                knightShopNode = HollowGlobals.KnightScenePreloaded.Instantiate<Node2D>();
-                knightShopNode.Name = $"KnightShopMecha_Fake_{i}";
-                characterContainer.AddChild(knightShopNode);
-            }
-
-            knightShopNode.Position = targetChild.Position;
-            knightShopNode.Scale = new Vector2(1.0f, 1.0f);
-
-            knightShopNode.GetNodeOrNull<AnimationPlayer>("AnimationPlayer")?.Play("Think");
+            if (HollowGlobals.KnightScenePreloaded == null) return;
+            knightShopNode = HollowGlobals.KnightScenePreloaded.Instantiate<Node2D>();
+            knightShopNode.Name = "KnightShopMecha_Fake";
+            characterContainer.AddChild(knightShopNode);
         }
+
+        // 5. 对齐位置，放大，并播放极其优雅的思考动画
+        knightShopNode.Position = originalVisual.Position;
+        knightShopNode.Scale = new Vector2(1.0f, 1.0f);
+        knightShopNode.GetNodeOrNull<AnimationPlayer>("AnimationPlayer")?.Play("Think");
+        
+        HollowGlobals.Log("✅ 极其完美！假商人房间小骑士替换成功！");
     }
 }
-
 // 离开假商人房间解锁
 [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Events.Custom.NFakeMerchant), "HideScreen")]
 internal static class NFakeMerchant_HideScreen_Patch
@@ -172,7 +149,14 @@ internal static class NFakeMerchant_HideScreen_Patch
     private static void Prefix(MegaCrit.Sts2.Core.Nodes.Events.Custom.NFakeMerchant __instance)
     {
         HollowGlobals.IsInShop = false;
+    }
+}
 
+[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Events.Custom.NFakeMerchant), "_ExitTree")]
+internal static class NFakeMerchant_ExitTree_Patch
+{
+    private static void Prefix(MegaCrit.Sts2.Core.Nodes.Events.Custom.NFakeMerchant __instance)
+    {
         var playerVisuals = Traverse.Create(__instance).Field("_playerVisuals").GetValue<System.Collections.IList>();
         if (playerVisuals != null)
         {
@@ -290,7 +274,14 @@ internal static class NRestSiteRoom_Exit_Patch
     private static void Prefix(MegaCrit.Sts2.Core.Nodes.Rooms.NRestSiteRoom __instance) 
     { 
         HollowGlobals.IsInShop = false; 
+    }
+}
 
+[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Rooms.NRestSiteRoom), "_ExitTree")]
+internal static class NRestSiteRoom_ExitTree_Patch
+{
+    private static void Prefix(MegaCrit.Sts2.Core.Nodes.Rooms.NRestSiteRoom __instance)
+    {
         var runState = Traverse.Create(__instance).Field("_runState").GetValue();
         if (runState != null)
         {
@@ -316,7 +307,7 @@ internal static class NRestSiteRoom_Exit_Patch
                 }
             }
         }
-        
+
         // 🚨 极其干脆的离场洗地：捕捉离开篝火的瞬间，把前辈的 Sprite 强行关掉
         if (NRestSiteRoom_Ready_Patch.CurrentCampKnightNode != null && GodotObject.IsInstanceValid(NRestSiteRoom_Ready_Patch.CurrentCampKnightNode))
         {

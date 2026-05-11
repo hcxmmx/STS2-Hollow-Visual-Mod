@@ -1,4 +1,4 @@
-[gd_scene load_steps=308 format=3 uid="uid://cfnxk1vsp6o6i"]
+[gd_scene load_steps=307 format=3 uid="uid://cfnxk1vsp6o6i"]
 
 [ext_resource type="Texture2D" uid="uid://px5c07k0870d" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Knight_Body/HK Prime Cln_HK_Prime_Intro/HK Prime Cln_HK_Prime_Intro0000.png" id="1_kbeb3"]
 [ext_resource type="Texture2D" uid="uid://cx7cmb3vx7yjn" path="res://Hcxmmx_Hollow_Knight_Skin/Assets/Knight_Body/Knight_charge_slash/Knight_charge_slash0000.png" id="1_np8hi"]
@@ -461,7 +461,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Charge_Slash/Knight_VFX:animation")
+tracks/2/path = NodePath("Charge_Slash/Charge_Slash:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -473,7 +473,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Charge_Slash/Knight_VFX:frame")
+tracks/3/path = NodePath("Charge_Slash/Charge_Slash:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -485,7 +485,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Charge_Slash/Knight_VFX:visible")
+tracks/4/path = NodePath("Charge_Slash/Charge_Slash:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -529,6 +529,110 @@ tracks/7/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qoo1t"]
+resource_name = "Collect"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker_Knight/Knight_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Collect"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker_Knight/Knight_Body:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker_Knight/Knight_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker_Knight/Knight_Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 15]
+}
+
+[sub_resource type="Animation" id="Animation_4hytt"]
+resource_name = "Collect_Shadow"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Marker_Knight/Knight_Body:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"Collect_Shadow"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Marker_Knight/Knight_Body:flip_h")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Marker_Knight/Knight_Body:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Marker_Knight/Knight_Body:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 14]
 }
 
 [sub_resource type="Animation" id="Animation_4gqqf"]
@@ -597,7 +701,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Charge_Slash/Knight_VFX:visible")
+tracks/5/path = NodePath("Charge_Slash/Charge_Slash:visible")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -661,7 +765,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Dash_Slash/AnimatedSprite2D:animation")
+tracks/2/path = NodePath("Dash_Slash/Dash_Slash:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -673,7 +777,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Dash_Slash/AnimatedSprite2D:frame")
+tracks/3/path = NodePath("Dash_Slash/Dash_Slash:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -685,7 +789,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Dash_Slash/AnimatedSprite2D:visible")
+tracks/4/path = NodePath("Dash_Slash/Dash_Slash:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -749,7 +853,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Dashv/AnimatedSprite2D:animation")
+tracks/2/path = NodePath("Dashv/Dashv:animation")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -761,7 +865,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Dashv/AnimatedSprite2D:frame")
+tracks/3/path = NodePath("Dashv/Dashv:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -773,7 +877,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Dashv/AnimatedSprite2D:visible")
+tracks/4/path = NodePath("Dashv/Dashv:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -913,7 +1017,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Charge/AnimatedSprite2D:animation")
+tracks/4/path = NodePath("Charge/Charge:animation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -925,7 +1029,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Charge/AnimatedSprite2D:frame")
+tracks/5/path = NodePath("Charge/Charge:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -937,7 +1041,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Charge/AnimatedSprite2D:position")
+tracks/6/path = NodePath("Charge/Charge:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -949,7 +1053,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Charge/AnimatedSprite2D:flip_h")
+tracks/7/path = NodePath("Charge/Charge:flip_h")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -961,7 +1065,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Charge/AnimatedSprite2D:visible")
+tracks/8/path = NodePath("Charge/Charge:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1001,8 +1105,8 @@ tracks/1/keys = {
 }
 tracks/2/type = "value"
 tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("Charge_Slash/Knight_VFX:visible")
+tracks/2/enabled = true
+tracks/2/path = NodePath("Charge_Slash/Charge_Slash:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -1013,7 +1117,7 @@ tracks/2/keys = {
 }
 tracks/3/type = "value"
 tracks/3/imported = false
-tracks/3/enabled = false
+tracks/3/enabled = true
 tracks/3/path = NodePath("Cyclone_Slash/Cyclone_Slash:visible")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
@@ -1025,8 +1129,8 @@ tracks/3/keys = {
 }
 tracks/4/type = "value"
 tracks/4/imported = false
-tracks/4/enabled = false
-tracks/4/path = NodePath("Dashv/AnimatedSprite2D:visible")
+tracks/4/enabled = true
+tracks/4/path = NodePath("Dashv/Dashv:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1061,8 +1165,8 @@ tracks/6/keys = {
 }
 tracks/7/type = "value"
 tracks/7/imported = false
-tracks/7/enabled = false
-tracks/7/path = NodePath("Dash_Slash/AnimatedSprite2D:visible")
+tracks/7/enabled = true
+tracks/7/path = NodePath("Dash_Slash/Dash_Slash:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1073,8 +1177,8 @@ tracks/7/keys = {
 }
 tracks/8/type = "value"
 tracks/8/imported = false
-tracks/8/enabled = false
-tracks/8/path = NodePath("Scream/AnimatedSprite2D:visible")
+tracks/8/enabled = true
+tracks/8/path = NodePath("Scream/Scream:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1085,8 +1189,8 @@ tracks/8/keys = {
 }
 tracks/9/type = "value"
 tracks/9/imported = false
-tracks/9/enabled = false
-tracks/9/path = NodePath("Charge/AnimatedSprite2D:visible")
+tracks/9/enabled = true
+tracks/9/path = NodePath("Charge/Charge:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -1150,7 +1254,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Charge_Slash/Knight_VFX:visible")
+tracks/4/path = NodePath("Charge_Slash/Charge_Slash:visible")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1174,7 +1278,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Dashv/AnimatedSprite2D:visible")
+tracks/6/path = NodePath("Dashv/Dashv:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1186,7 +1290,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Dash_Slash/AnimatedSprite2D:visible")
+tracks/7/path = NodePath("Dash_Slash/Dash_Slash:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1198,7 +1302,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("Scream/AnimatedSprite2D:visible")
+tracks/8/path = NodePath("Scream/Scream:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1210,7 +1314,7 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("Charge/AnimatedSprite2D:visible")
+tracks/9/path = NodePath("Charge/Charge:visible")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
@@ -1429,7 +1533,7 @@ tracks/3/keys = {
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Scream/AnimatedSprite2D:animation")
+tracks/4/path = NodePath("Scream/Scream:animation")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
@@ -1441,7 +1545,7 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Scream/AnimatedSprite2D:frame")
+tracks/5/path = NodePath("Scream/Scream:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -1453,7 +1557,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Scream/AnimatedSprite2D:visible")
+tracks/6/path = NodePath("Scream/Scream:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1515,9 +1619,9 @@ tracks/3/keys = {
 "values": [0, 11]
 }
 
-[sub_resource type="Animation" id="Animation_wtgby"]
-resource_name = "Stun"
-length = 0.4
+[sub_resource type="Animation" id="Animation_xa8jl"]
+resource_name = "Sit_Map_Look"
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1528,19 +1632,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Stun"]
+"values": [&"Sit_Map_Look"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker_Knight/Knight_Body:frame")
+tracks/1/path = NodePath("Marker_Knight/Knight_Body:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.4),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [0, 4]
+"values": [Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1557,118 +1661,38 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Marker_Knight/Knight_Body:position")
+tracks/3/path = NodePath("Marker_Knight/Knight_Body:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0, 3]
 }
-
-[sub_resource type="Animation" id="Animation_qoo1t"]
-resource_name = "Collect"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Marker_Knight/Knight_Body:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Collect"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Marker_Knight/Knight_Body:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Prime2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
 }
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker_Knight/Knight_Body:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Prime2:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Marker_Knight/Knight_Body:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 15]
-}
-
-[sub_resource type="Animation" id="Animation_4hytt"]
-resource_name = "Collect_Shadow"
-length = 1.4
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Marker_Knight/Knight_Body:animation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [&"Collect_Shadow"]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Marker_Knight/Knight_Body:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Marker_Knight/Knight_Body:position")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(0, 0)]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Marker_Knight/Knight_Body:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 1.4),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 14]
+"values": [Vector2(450, -170)]
 }
 
 [sub_resource type="Animation" id="Animation_ngnij"]
@@ -1760,9 +1784,9 @@ tracks/6/keys = {
 "values": [Vector2(450, -170)]
 }
 
-[sub_resource type="Animation" id="Animation_xa8jl"]
-resource_name = "Sit_Map_Look"
-length = 0.5
+[sub_resource type="Animation" id="Animation_wtgby"]
+resource_name = "Stun"
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -1773,19 +1797,19 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [&"Sit_Map_Look"]
+"values": [&"Stun"]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Marker_Knight/Knight_Body:position")
+tracks/1/path = NodePath("Marker_Knight/Knight_Body:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(0, 0)]
+"values": [0, 4]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1802,38 +1826,14 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Marker_Knight/Knight_Body:frame")
+tracks/3/path = NodePath("Marker_Knight/Knight_Body:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0, 3]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Prime2:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Prime2:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(450, -170)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_0r3gv"]
@@ -1889,21 +1889,6 @@ tracks/3/keys = {
 "values": [0, 54]
 }
 
-[sub_resource type="Animation" id="Animation_kbeb3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Charge_Slash/Knight_VFX:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lrvx3"]
 _data = {
 &"Cast": SubResource("Animation_mk7ly"),
@@ -1922,7 +1907,6 @@ _data = {
 &"Lantern_Run": SubResource("Animation_h0v14"),
 &"Map_Run": SubResource("Animation_1gf80"),
 &"Nail_Slash": SubResource("Animation_nrwre"),
-&"RESET": SubResource("Animation_kbeb3"),
 &"Scream": SubResource("Animation_eooeh"),
 &"Shadow_Dash": SubResource("Animation_32mia"),
 &"Sit_Map_Look": SubResource("Animation_xa8jl"),
@@ -3180,11 +3164,12 @@ flip_h = true
 [node name="Charge_Slash" type="Marker2D" parent="."]
 position = Vector2(20, 175)
 
-[node name="Knight_VFX" type="AnimatedSprite2D" parent="Charge_Slash"]
+[node name="Charge_Slash" type="AnimatedSprite2D" parent="Charge_Slash"]
 visible = false
 material = SubResource("CanvasItemMaterial_qfofx")
 sprite_frames = SubResource("SpriteFrames_5ploo")
 animation = &"new_animation"
+frame = 9
 flip_h = true
 
 [node name="Cyclone_Slash" type="Marker2D" parent="."]
@@ -3199,15 +3184,16 @@ animation = &"Cyclone_Slash"
 [node name="Dashv" type="Marker2D" parent="."]
 position = Vector2(-50, 195)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dashv"]
+[node name="Dashv" type="AnimatedSprite2D" parent="Dashv"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_nrwre")
 animation = &"Dashv"
+frame = 8
 
 [node name="Dash_Slash" type="Marker2D" parent="."]
 position = Vector2(0, 250)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Dash_Slash"]
+[node name="Dash_Slash" type="AnimatedSprite2D" parent="Dash_Slash"]
 visible = false
 sprite_frames = SubResource("SpriteFrames_m4jdv")
 animation = &"Dash_Slash"
@@ -3216,7 +3202,7 @@ flip_h = true
 
 [node name="Scream" type="Marker2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Scream"]
+[node name="Scream" type="AnimatedSprite2D" parent="Scream"]
 visible = false
 position = Vector2(65, -133)
 sprite_frames = SubResource("SpriteFrames_rffso")
@@ -3225,9 +3211,9 @@ frame = 10
 
 [node name="Charge" type="Marker2D" parent="."]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Charge"]
+[node name="Charge" type="AnimatedSprite2D" parent="Charge"]
 visible = false
-position = Vector2(87, 202)
+position = Vector2(-93, 201)
 sprite_frames = SubResource("SpriteFrames_i3k3x")
 animation = &"Charge"
 flip_h = true

@@ -6,7 +6,7 @@ namespace Hcxmmx.HollowKnightMod.Scripts;
 
 public static class HollowGlobals
 {
-    public static bool EnableDebugLog = false;
+    public static bool EnableDebugLog = true;
     public static bool IsInShop = false;
     public const string TargetCharacterId = "NECROBINDER";
     public const string HarmonyId = "sts2.hcxmmx.hollowknight.visuals";
@@ -44,6 +44,20 @@ public static class HollowGlobals
         "Cast", "Cast_Level", "Focus" ,"Collect","Collect_Shadow"
     };
 
+    // ==========================================
+    // 🎇 极其暴力的子节点特效清洗池
+    // ==========================================
+    public static readonly string[] VfxChildPool =
+    {
+        "Knight_VFX",     // 蓄力斩的那个（根据你之前的截图）
+        "Cyclone_Slash",  // 旋风斩
+        "Dashv",          // 冲刺
+        "Dash_Slash",     // 冲刺斩
+        "Scream",         // 尖叫
+        "Charge_Slash"    // 冲锋
+        // 如果长官还有新增的特效，直接把名字极其干脆地加在下面！
+    };
+
     // 🚨 极其优雅的终极武器库：{ "本体动作名", 极其独立的专属特效图纸 }
     // 以后加一百个新绝招，也只需要在这里加一行！
     public static readonly System.Collections.Generic.Dictionary<string, PackedScene?> SeniorSkillMap = new()
@@ -58,6 +72,7 @@ public static class HollowGlobals
     public static readonly string[] SeniorSkillKeys = SeniorSkillMap.Keys.ToArray();
 
     public static bool IsKnightDead = false;
+
 
     // 极其方便的日志输出
     public static void Log(string message)
@@ -79,4 +94,18 @@ public static class HollowGlobals
         return idTraverse.Property("Entry").GetValue<string>()
             ?? idTraverse.Field("Entry").GetValue<string>();
     }
+
+    public static T? FindFirstNode<T>(Node root, Func<T, bool> predicate) where T : Node
+    {
+        foreach (Node child in root.GetChildren())
+        {
+            if (child is T typedChild && predicate(typedChild)) return typedChild;
+
+            var found = FindFirstNode(child, predicate);
+            if (found != null) return found;
+        }
+
+        return null;
+    }
+
 }

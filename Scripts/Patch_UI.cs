@@ -72,6 +72,126 @@ internal static class NCharacterSelectScreen_SelectCharacter_Patch
 }
 
 // ==========================================
+// 🌐 多人读档界面 (主机端)：替换背景大立绘
+// ==========================================
+[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NMultiplayerLoadGameScreen), "InitializeAsHost")] // 注意你的命名空间
+internal static class NMultiplayerLoadGameScreen_InitializeAsHost_Patch
+{
+    private static void Postfix(Godot.Node __instance, object run)
+    {
+        HollowGlobals.Log("\n====== 🌐 多人读档雷达 (Host)：侦测到界面加载！ ======");
+
+        // 1. 极其精准地获取背景容器
+        var bgContainer = Traverse.Create(__instance).Field("_bgContainer").GetValue<Godot.Control>();
+        if (bgContainer == null) return;
+
+        // 2. 查户口：利用反射从 run 数据里强行提取角色 ID
+        string charId = "";
+        try {
+            // 盲猜 run 里面有个 Character 字段，拿到它的 Id (长官如果报错，可在 dnSpy 确认 SerializableRun 的字段)
+            var characterObj = Traverse.Create(run).Property("Character").GetValue() ?? Traverse.Create(run).Field("Character").GetValue();
+            charId = Traverse.Create(characterObj).Property("Id").GetValue<string>() ?? Traverse.Create(characterObj).Field("Id").GetValue<string>();
+            charId = charId ?? Traverse.Create(run).Field("CharacterId").GetValue<string>(); 
+        } catch { }
+
+        // 如果拿不到 ID，或者拿到的不是咱们的目标骨妹，直接撤退！
+        if (!string.Equals(charId, "Necrobinder", StringComparison.OrdinalIgnoreCase) &&
+            !string.Equals(charId, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        // 3. 极其粗暴地替换背景大图
+        foreach (Godot.Node child in bgContainer.GetChildren())
+        {
+            if (child is Godot.CanvasItem canvasItem) canvasItem.Hide();
+        }
+
+        if (HollowGlobals.SelectBigTexture != null)
+        {
+            var existingRect = bgContainer.GetNodeOrNull<Godot.TextureRect>("HollowKnight_SelectBg");
+            if (existingRect != null)
+            {
+                existingRect.Texture = HollowGlobals.SelectBigTexture;
+                existingRect.Show();
+            }
+            else
+            {
+                var textureRect = new Godot.TextureRect
+                {
+                    Name = "HollowKnight_SelectBg",
+                    Texture = HollowGlobals.SelectBigTexture,
+                    ExpandMode = Godot.TextureRect.ExpandModeEnum.IgnoreSize,
+                    StretchMode = Godot.TextureRect.StretchModeEnum.KeepAspectCentered,
+                    MouseFilter = Godot.Control.MouseFilterEnum.Ignore
+                };
+                textureRect.SetAnchorsPreset(Godot.Control.LayoutPreset.FullRect);
+                bgContainer.AddChild(textureRect);
+            }
+        }
+    }
+}
+
+// ==========================================
+// 🌐 多人读档界面 (客机端)：替换背景大立绘
+// ==========================================
+[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NMultiplayerLoadGameScreen), "InitializeAsClient")] // 注意你的命名空间
+internal static class NMultiplayerLoadGameScreen_InitializeAsClient_Patch
+{
+    private static void Postfix(Godot.Node __instance, object message)
+    {
+        HollowGlobals.Log("\n====== 🌐 多人读档雷达 (Client)：侦测到界面加载！ ======");
+
+        var bgContainer = Traverse.Create(__instance).Field("_bgContainer").GetValue<Godot.Control>();
+        if (bgContainer == null) return;
+
+        // 客机端的查户口：从 message (ClientLoadJoinResponseMessage) 里提取 ID
+        string charId = "";
+        try {
+            // 客机端的存档信息通常包得很深，可能是 message.Run.Character.Id 
+            var runObj = Traverse.Create(message).Property("Run").GetValue() ?? Traverse.Create(message).Field("Run").GetValue();
+            var characterObj = Traverse.Create(runObj).Property("Character").GetValue() ?? Traverse.Create(runObj).Field("Character").GetValue();
+            charId = Traverse.Create(characterObj).Property("Id").GetValue<string>() ?? Traverse.Create(characterObj).Field("Id").GetValue<string>();
+        } catch { }
+
+        if (!string.Equals(charId, "Necrobinder", StringComparison.OrdinalIgnoreCase) &&
+            !string.Equals(charId, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase))
+        {
+            return;
+        }
+
+        // 执行同样的换背景战术
+        foreach (Godot.Node child in bgContainer.GetChildren())
+        {
+            if (child is Godot.CanvasItem canvasItem) canvasItem.Hide();
+        }
+
+        if (HollowGlobals.SelectBigTexture != null)
+        {
+            var existingRect = bgContainer.GetNodeOrNull<Godot.TextureRect>("HollowKnight_SelectBg");
+            if (existingRect != null)
+            {
+                existingRect.Texture = HollowGlobals.SelectBigTexture;
+                existingRect.Show();
+            }
+            else
+            {
+                var textureRect = new Godot.TextureRect
+                {
+                    Name = "HollowKnight_SelectBg",
+                    Texture = HollowGlobals.SelectBigTexture,
+                    ExpandMode = Godot.TextureRect.ExpandModeEnum.IgnoreSize,
+                    StretchMode = Godot.TextureRect.StretchModeEnum.KeepAspectCentered,
+                    MouseFilter = Godot.Control.MouseFilterEnum.Ignore
+                };
+                textureRect.SetAnchorsPreset(Godot.Control.LayoutPreset.FullRect);
+                bgContainer.AddChild(textureRect);
+            }
+        }
+    }
+}
+
+// ==========================================
 // 🔇 选人按钮：替换底部的小头像
 // ==========================================
 [HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectButton), "Init")]
