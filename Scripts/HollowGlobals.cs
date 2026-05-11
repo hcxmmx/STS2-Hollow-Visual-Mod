@@ -6,7 +6,7 @@ namespace Hcxmmx.HollowKnightMod.Scripts;
 
 public static class HollowGlobals
 {
-    public static bool EnableDebugLog = true;
+    public static bool EnableDebugLog = false;
     public static bool IsInShop = false;
     public const string TargetCharacterId = "NECROBINDER";
     public const string HarmonyId = "sts2.hcxmmx.hollowknight.visuals";
