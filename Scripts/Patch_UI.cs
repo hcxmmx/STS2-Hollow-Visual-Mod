@@ -12,7 +12,6 @@ internal static class NCharacterSelectScreen_SelectCharacter_Patch
 {
     private static void Postfix(MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NCharacterSelectScreen __instance, Node charSelectButton, object characterModel)
     {
-        // 1. 查户口：是不是咱们的小骑士（Necrobinder）？
         var entryName = HollowGlobals.GetCharacterEntry(characterModel);
         if (!string.Equals(entryName, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase)) return;
 
@@ -23,16 +22,13 @@ internal static class NCharacterSelectScreen_SelectCharacter_Patch
         var nameLabel = instanceTraverse.Field("_name").GetValue();
         var descLabel = instanceTraverse.Field("_description").GetValue<RichTextLabel>();
 
-        // 2. 极其粗暴地替换背景大图
         if (bgContainer != null)
         {
-            // 抹杀官方原版立绘
             foreach (Node child in bgContainer.GetChildren())
             {
                 if (child is CanvasItem canvasItem) canvasItem.Hide();
             }
 
-            // 凭空捏造一个相框，极其优雅地省去了进 Godot 建场景的麻烦！
             if (HollowGlobals.SelectBigTexture != null)
             {
                 var existingRect = bgContainer.GetNodeOrNull<TextureRect>("HollowKnight_SelectBg");
@@ -48,7 +44,7 @@ internal static class NCharacterSelectScreen_SelectCharacter_Patch
                         Name = "HollowKnight_SelectBg",
                         Texture = HollowGlobals.SelectBigTexture,
                         ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-                        StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered, // 保持比例居中，绝对不会被拉伸变形
+                        StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered,
                         MouseFilter = Control.MouseFilterEnum.Ignore
                     };
                     textureRect.SetAnchorsPreset(Control.LayoutPreset.FullRect);
@@ -57,13 +53,11 @@ internal static class NCharacterSelectScreen_SelectCharacter_Patch
             }
         }
 
-        // 3. 极其威风地篡改名字
         if (nameLabel != null)
         {
             Traverse.Create(nameLabel).Method("SetTextAutoSize", new object[] { "小骑士" }).GetValue();
         }
 
-        // 4. 极其有沉浸感地篡改背景故事 (长官可自行发挥极其感人的文案！)
         if (descLabel != null)
         {
             descLabel.Text = "来自圣巢的无名容器，与它的前辈并肩作战。\n挥舞骨钉，驾驭虚空与灵魂之力挑战尖塔。";
@@ -74,42 +68,62 @@ internal static class NCharacterSelectScreen_SelectCharacter_Patch
 // ==========================================
 // 🌐 多人读档界面 (主机端)：替换背景大立绘
 // ==========================================
-[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NMultiplayerLoadGameScreen), "InitializeAsHost")] // 注意你的命名空间
+[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NMultiplayerLoadGameScreen), "InitializeAsHost")]
 internal static class NMultiplayerLoadGameScreen_InitializeAsHost_Patch
 {
     private static void Postfix(Godot.Node __instance, object run)
     {
         HollowGlobals.Log("\n====== 🌐 多人读档雷达 (Host)：侦测到界面加载！ ======");
 
-        // 1. 极其精准地获取背景容器
-        var bgContainer = Traverse.Create(__instance).Field("_bgContainer").GetValue<Godot.Control>();
-        if (bgContainer == null) return;
+        var bgContainer = __instance.GetNodeOrNull<Godot.Control>("%BgContainer") 
+                       ?? __instance.GetNodeOrNull<Godot.Control>("BgContainer")
+                       ?? __instance.GetNodeOrNull<Godot.Control>("%Bg");
+        
+        var targetContainer = bgContainer ?? (__instance as Godot.Control);
 
-        // 2. 查户口：利用反射从 run 数据里强行提取角色 ID
         string charId = "";
         try {
-            // 盲猜 run 里面有个 Character 字段，拿到它的 Id (长官如果报错，可在 dnSpy 确认 SerializableRun 的字段)
-            var characterObj = Traverse.Create(run).Property("Character").GetValue() ?? Traverse.Create(run).Field("Character").GetValue();
-            charId = Traverse.Create(characterObj).Property("Id").GetValue<string>() ?? Traverse.Create(characterObj).Field("Id").GetValue<string>();
-            charId = charId ?? Traverse.Create(run).Field("CharacterId").GetValue<string>(); 
-        } catch { }
+            var playersList = Traverse.Create(run).Property("Players").GetValue<System.Collections.IList>() 
+                           ?? Traverse.Create(run).Field("Players").GetValue<System.Collections.IList>();
+            
+            if (playersList != null && playersList.Count > 0)
+            {
+                var hostPlayer = playersList[0]; 
+                var modelIdObj = Traverse.Create(hostPlayer).Property("CharacterId").GetValue() 
+                              ?? Traverse.Create(hostPlayer).Field("CharacterId").GetValue();
+                
+                if (modelIdObj != null) charId = modelIdObj.ToString(); 
+            }
+        } catch (Exception ex) { 
+            HollowGlobals.Log($"[Error] Host提取角色ID异常: {ex.Message}");
+        }
+        HollowGlobals.Log($"Host 最终提取的 ID: '{charId}'");
 
-        // 如果拿不到 ID，或者拿到的不是咱们的目标骨妹，直接撤退！
-        if (!string.Equals(charId, "Necrobinder", StringComparison.OrdinalIgnoreCase) &&
-            !string.Equals(charId, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase))
+        if (string.IsNullOrEmpty(charId) || (!charId.Contains("Necrobinder", StringComparison.OrdinalIgnoreCase) && !charId.Contains(HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase)))
         {
             return;
         }
 
-        // 3. 极其粗暴地替换背景大图
-        foreach (Godot.Node child in bgContainer.GetChildren())
+        if (targetContainer != null && HollowGlobals.SelectBigTexture != null)
         {
-            if (child is Godot.CanvasItem canvasItem) canvasItem.Hide();
-        }
+            if (bgContainer != null)
+            {
+                foreach (Godot.Node child in bgContainer.GetChildren())
+                {
+                    if (child is Godot.CanvasItem canvasItem) canvasItem.Hide();
+                }
+            }
+            else
+            {
+                // 精准打击：根据日志获取的具体节点名进行隐藏，避免误伤
+                var staticBg = targetContainer.GetNodeOrNull<Godot.CanvasItem>("StaticBg");
+                if (staticBg != null) staticBg.Hide();
 
-        if (HollowGlobals.SelectBigTexture != null)
-        {
-            var existingRect = bgContainer.GetNodeOrNull<Godot.TextureRect>("HollowKnight_SelectBg");
+                var animatedBg = targetContainer.GetNodeOrNull<Godot.CanvasItem>("AnimatedBg");
+                if (animatedBg != null) animatedBg.Hide();
+            }
+
+            var existingRect = targetContainer.GetNodeOrNull<Godot.TextureRect>("HollowKnight_SelectBg");
             if (existingRect != null)
             {
                 existingRect.Texture = HollowGlobals.SelectBigTexture;
@@ -126,8 +140,15 @@ internal static class NMultiplayerLoadGameScreen_InitializeAsHost_Patch
                     MouseFilter = Godot.Control.MouseFilterEnum.Ignore
                 };
                 textureRect.SetAnchorsPreset(Godot.Control.LayoutPreset.FullRect);
-                bgContainer.AddChild(textureRect);
+                targetContainer.AddChild(textureRect);
+                
+                if (bgContainer == null) 
+                {
+                    // 放到图层最底，但因为上面隐藏了原版背景，所以小骑士肯定能露出来！
+                    targetContainer.MoveChild(textureRect, 0);
+                }
             }
+            HollowGlobals.Log($"✅ 成功在 {targetContainer.Name} 上铺设了小骑士的背景图！");
         }
     }
 }
@@ -135,40 +156,65 @@ internal static class NMultiplayerLoadGameScreen_InitializeAsHost_Patch
 // ==========================================
 // 🌐 多人读档界面 (客机端)：替换背景大立绘
 // ==========================================
-[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NMultiplayerLoadGameScreen), "InitializeAsClient")] // 注意你的命名空间
+[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Nodes.Screens.CharacterSelect.NMultiplayerLoadGameScreen), "InitializeAsClient")]
 internal static class NMultiplayerLoadGameScreen_InitializeAsClient_Patch
 {
     private static void Postfix(Godot.Node __instance, object message)
     {
         HollowGlobals.Log("\n====== 🌐 多人读档雷达 (Client)：侦测到界面加载！ ======");
 
-        var bgContainer = Traverse.Create(__instance).Field("_bgContainer").GetValue<Godot.Control>();
-        if (bgContainer == null) return;
+        var bgContainer = __instance.GetNodeOrNull<Godot.Control>("%BgContainer") 
+                       ?? __instance.GetNodeOrNull<Godot.Control>("BgContainer")
+                       ?? __instance.GetNodeOrNull<Godot.Control>("%Bg");
+        var targetContainer = bgContainer ?? (__instance as Godot.Control);
 
-        // 客机端的查户口：从 message (ClientLoadJoinResponseMessage) 里提取 ID
         string charId = "";
         try {
-            // 客机端的存档信息通常包得很深，可能是 message.Run.Character.Id 
             var runObj = Traverse.Create(message).Property("Run").GetValue() ?? Traverse.Create(message).Field("Run").GetValue();
-            var characterObj = Traverse.Create(runObj).Property("Character").GetValue() ?? Traverse.Create(runObj).Field("Character").GetValue();
-            charId = Traverse.Create(characterObj).Property("Id").GetValue<string>() ?? Traverse.Create(characterObj).Field("Id").GetValue<string>();
-        } catch { }
+            if (runObj != null)
+            {
+                var playersList = Traverse.Create(runObj).Property("Players").GetValue<System.Collections.IList>() 
+                               ?? Traverse.Create(runObj).Field("Players").GetValue<System.Collections.IList>();
+                
+                if (playersList != null && playersList.Count > 0)
+                {
+                    var targetPlayer = playersList[0];
+                    var modelIdObj = Traverse.Create(targetPlayer).Property("CharacterId").GetValue() 
+                                  ?? Traverse.Create(targetPlayer).Field("CharacterId").GetValue();
+                    
+                    if (modelIdObj != null) charId = modelIdObj.ToString();
+                }
+            }
+        } catch (Exception ex) { 
+            HollowGlobals.Log($"[Error] Client提取角色ID异常: {ex.Message}");
+        }
+        HollowGlobals.Log($"Client 最终提取的 ID: '{charId}'");
 
-        if (!string.Equals(charId, "Necrobinder", StringComparison.OrdinalIgnoreCase) &&
-            !string.Equals(charId, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase))
+        if (string.IsNullOrEmpty(charId) || (!charId.Contains("Necrobinder", StringComparison.OrdinalIgnoreCase) && !charId.Contains(HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase)))
         {
             return;
         }
 
-        // 执行同样的换背景战术
-        foreach (Godot.Node child in bgContainer.GetChildren())
+        if (targetContainer != null && HollowGlobals.SelectBigTexture != null)
         {
-            if (child is Godot.CanvasItem canvasItem) canvasItem.Hide();
-        }
+            if (bgContainer != null)
+            {
+                foreach (Godot.Node child in bgContainer.GetChildren())
+                {
+                    if (child is Godot.CanvasItem canvasItem) canvasItem.Hide();
+                }
+            }
+            else
+            {
+                // 精准打击：根据日志获取的具体节点名进行隐藏，避免误伤
+                var staticBg = targetContainer.GetNodeOrNull<Godot.CanvasItem>("StaticBg");
+                if (staticBg != null) staticBg.Hide();
 
-        if (HollowGlobals.SelectBigTexture != null)
-        {
-            var existingRect = bgContainer.GetNodeOrNull<Godot.TextureRect>("HollowKnight_SelectBg");
+                var animatedBg = targetContainer.GetNodeOrNull<Godot.CanvasItem>("AnimatedBg");
+                if (animatedBg != null) animatedBg.Hide();
+            }
+
+            var existingRect = targetContainer.GetNodeOrNull<Godot.TextureRect>("HollowKnight_SelectBg");
             if (existingRect != null)
             {
                 existingRect.Texture = HollowGlobals.SelectBigTexture;
@@ -185,8 +231,14 @@ internal static class NMultiplayerLoadGameScreen_InitializeAsClient_Patch
                     MouseFilter = Godot.Control.MouseFilterEnum.Ignore
                 };
                 textureRect.SetAnchorsPreset(Godot.Control.LayoutPreset.FullRect);
-                bgContainer.AddChild(textureRect);
+                targetContainer.AddChild(textureRect);
+                
+                if (bgContainer == null) 
+                {
+                    targetContainer.MoveChild(textureRect, 0);
+                }
             }
+            HollowGlobals.Log($"✅ 成功在 {targetContainer.Name} 上铺设了小骑士的背景图！");
         }
     }
 }
@@ -202,7 +254,6 @@ internal static class NCharacterSelectButton_Init_Patch_Avatar
         var entryName = HollowGlobals.GetCharacterEntry(character);
         if (!string.Equals(entryName, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase)) return;
 
-        // 这里极其偷懒地直接复用咱们刚才在顶部栏用过的那个小头像！
         var customAvatar = HollowGlobals.TopBarIconTexture; 
         if (customAvatar == null) return;
 
