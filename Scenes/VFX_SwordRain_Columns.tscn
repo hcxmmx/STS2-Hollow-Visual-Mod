@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3]
+[ext_resource type="Script" path="res://Hcxmmx_Hollow_Knight_Skin/Scripts/SwordRainCast.gd" id="1"]
+[node name="VFX_SwordRain_Columns" type="Node2D"]
+script = ExtResource("1")
+pattern = 0

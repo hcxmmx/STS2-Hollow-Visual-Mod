@@ -63,7 +63,6 @@ internal static class NCreature_Ready_Knight_Patch
 
         if (player != null && string.Equals(charId, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase))
         {
-            HollowGlobals.IsKnightDead = false;
             HollowGlobals.Log("====== 🎯 目标确认！强行挂载小骑士！ ======");
             visuals.GetNodeOrNull<Node2D>("%Visuals")?.Hide();
 
@@ -74,6 +73,7 @@ internal static class NCreature_Ready_Knight_Patch
                 {
                     knightNode.Name = "Knight_Root";
                     visuals.AddChild(knightNode);
+                    KnightLowHealth.Bind(entity, knightNode);
 
                     // 🚨 强控缩放：放大 1.0 倍！(长官以后想微调就在这里改数字)
                     knightNode.Scale = new Vector2(1.1f, 1.1f);
@@ -84,8 +84,7 @@ internal static class NCreature_Ready_Knight_Patch
                         // 🚨 极其霸道的入场盲盒：从全局池子里随机抓一个！
                         string chosenIntro = HollowGlobals.KnightIntroPool[HollowGlobals.Rng.Next(HollowGlobals.KnightIntroPool.Length)];
                         HollowGlobals.Log($"🎬 随机触发入场动画: {chosenIntro}");
-                        a1.Play(chosenIntro);
-                        a1.Queue("Idle");
+                        KnightLowHealth.PlayAction(knightNode, chosenIntro);
                     }
 
                     var syncTimer = new Godot.Timer
@@ -125,18 +124,7 @@ internal static class NCreature_Ready_Knight_Patch
 [HarmonyPatch(typeof(CreatureCmd), nameof(CreatureCmd.TriggerAnim))]
 internal static class CreatureCmd_TriggerAnim_Knight_Patch
 {
-    private static void ClearVfxChildren(Node2D mechaNode)
-    {
-        foreach (var childName in HollowGlobals.VfxChildPool)
-        {
-            var vfxChild = HollowGlobals.FindFirstNode<AnimatedSprite2D>(mechaNode, n =>
-                string.Equals(n.Name.ToString(), childName, StringComparison.Ordinal));
-
-            vfxChild?.Hide();
-        }
-    }
-
-    private static void Prefix(Creature creature, string triggerName)
+    private static void Prefix(Creature creature, ref string triggerName)
     {
         if (creature == null) return;
         string trigger = triggerName ?? ""; // 🛡️ 消除 CS8602：确保 trigger 绝不为空
@@ -147,32 +135,73 @@ internal static class CreatureCmd_TriggerAnim_Knight_Patch
 
         if (!isKnight) return;
 
+        // Restore the supported native trigger even if the skin node was removed.
+        string? selectedAttack = null;
+        if (trigger.StartsWith(KnightAttacks.TriggerPrefix, StringComparison.Ordinal))
+        {
+            var parts = trigger.Split('/');
+            if (parts.Length == 3 && HollowGlobals.KnightAttackPool.Contains(parts[2]))
+            {
+                triggerName = parts[1];
+                selectedAttack = parts[2];
+            }
+        }
+
         if (!CombatRegistry.CreatureRegistry.TryGetValue(creature, out var nCreature) || !GodotObject.IsInstanceValid(nCreature)) return;
 
         var visuals = nCreature?.Visuals;
         if (visuals == null) return;
 
-        if (HollowGlobals.IsKnightDead) return; // 死了就彻底屏蔽信号
         var a1 = visuals.GetNodeOrNull<AnimationPlayer>("Knight_Root/AnimationPlayer");
         if (a1 == null) return;
 
         var knightRoot = visuals.GetNodeOrNull<Node2D>("Knight_Root");
-        if (knightRoot != null) ClearVfxChildren(knightRoot);
+
+        if (selectedAttack != null)
+        {
+            KnightLowHealth.PlayAction(knightRoot, selectedAttack);
+            return;
+        }
 
         switch (trigger)
         {
             case "Attack": case "AttackSingle": case "AttackTriple":
                 string atk = HollowGlobals.KnightAttackPool[HollowGlobals.Rng.Next(HollowGlobals.KnightAttackPool.Length)];
-                a1.Play(atk); a1.Queue("Idle"); break;
+                KnightLowHealth.PlayAction(knightRoot, atk); break;
             case "Cast": case "cast": case "Skill":
                 string skill = HollowGlobals.KnightSkillPool[HollowGlobals.Rng.Next(HollowGlobals.KnightSkillPool.Length)];
-                a1.Play(skill); a1.Queue("Idle"); break;
-            case "Hit": case "hurt": a1.Play("Stun"); a1.Queue("Idle"); break;
+                KnightLowHealth.PlayAction(knightRoot, skill); break;
+            case "Hit": case "hurt": KnightLowHealth.PlayAction(knightRoot, "Stun"); break;
+            case "Idle": case "idle_loop":
+                KnightLowHealth.RequestIdle(knightRoot); break;
             case "Die": case "Death": case "Dead": case "die":
-                HollowGlobals.IsKnightDead = true; a1.Play("Death"); break;
+                KnightLowHealth.PlayAction(knightRoot, "Death"); break;
+            case "Revive": case "revive":
+                KnightLowHealth.Revive(knightRoot); break;
             case "Victory": case "victory":
-                a1.Play("Idle_Map"); break;
+                KnightLowHealth.PlayAction(knightRoot, "Idle_Map"); break;
         }
+    }
+}
+
+// Official revival can bypass CreatureCmd.TriggerAnim entirely.
+[HarmonyPatch(typeof(NCreature), nameof(NCreature.StartReviveAnim))]
+internal static class NCreature_StartReviveAnim_Knight_Patch
+{
+    private static void Postfix(NCreature __instance)
+    {
+        KnightLowHealth.Revive(__instance.Visuals?.GetNodeOrNull<Node2D>("Knight_Root"));
+    }
+}
+
+// Covers native Revive triggers too. The controller ignores duplicate calls.
+[HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
+internal static class NCreature_SetAnimationTrigger_Revive_Knight_Patch
+{
+    private static void Postfix(NCreature __instance, string trigger)
+    {
+        if (string.Equals(trigger, "Revive", StringComparison.OrdinalIgnoreCase))
+            KnightLowHealth.Revive(__instance.Visuals?.GetNodeOrNull<Node2D>("Knight_Root"));
     }
 }
 
@@ -195,8 +224,7 @@ internal static class NCreature_AnimDie_Knight_Patch
 
         if (player != null && string.Equals(charId, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase))
         {
-            HollowGlobals.IsKnightDead = true;
-            visuals.GetNodeOrNull<AnimationPlayer>("Knight_Root/AnimationPlayer")?.Play("Death");
+            KnightLowHealth.PlayAction(visuals.GetNodeOrNull<Node2D>("Knight_Root"), "Death");
         }
     }
 }
@@ -204,7 +232,7 @@ internal static class NCreature_AnimDie_Knight_Patch
 // ==========================================
 // 🏆 胜利结算协议：小骑士
 // ==========================================
-[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Combat.CombatManager), "EndCombatInternal")]
+[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Combat.CombatManager), "EndCombatInternal", new Type[0])]
 internal static class CombatManager_EndCombatInternal_Knight_Patch
 {
     private static void Prefix()
@@ -229,7 +257,7 @@ internal static class CombatManager_EndCombatInternal_Knight_Patch
 
                 if (GodotObject.IsInstanceValid(a1))
                 {
-                    a1.Play("Idle_Map");
+                    KnightLowHealth.PlayAction(visuals.GetNodeOrNull<Node2D>("Knight_Root"), "Idle_Map");
                 }
             }
         }

@@ -308,18 +308,9 @@ internal static class NRestSiteRoom_ExitTree_Patch
             }
         }
 
-        // 🚨 极其干脆的离场洗地：捕捉离开篝火的瞬间，把前辈的 Sprite 强行关掉
-        if (NRestSiteRoom_Ready_Patch.CurrentCampKnightNode != null && GodotObject.IsInstanceValid(NRestSiteRoom_Ready_Patch.CurrentCampKnightNode))
-        {
-            // ⚠️ 长官注意：请把下面双引号里的 "SeniorSprite_Name_Here" 
-            // 替换成你在 Godot 场景树里给前辈那个 Sprite2D 起的真实名字！
-            var seniorSprite = NRestSiteRoom_Ready_Patch.CurrentCampKnightNode.GetNodeOrNull<Sprite2D>("Prime"); 
-            
-            if (seniorSprite != null)
-            {
-                seniorSprite.Visible = false;
-                HollowGlobals.Log("====== 🧹 离开篝火：已极其干脆地将前辈陪伴幻影隐藏！ ======");
-            }
-        }
+        var campKnight = NRestSiteRoom_Ready_Patch.CurrentCampKnightNode;
+        if (GodotObject.IsInstanceValid(campKnight))
+            campKnight?.GetNodeOrNull<Sprite2D>("Prime2")?.Hide();
+        NRestSiteRoom_Ready_Patch.CurrentCampKnightNode = null;
     }
 }

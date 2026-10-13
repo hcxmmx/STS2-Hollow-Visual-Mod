@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://Hcxmmx_Hollow_Knight_Skin/Scripts/SeniorSpecialCast.gd" id="1"]
+
+[node name="Jump_Slam" type="Node2D"]
+script = ExtResource("1")
+kind = 2
