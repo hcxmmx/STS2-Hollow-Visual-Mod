@@ -10,7 +10,10 @@ func _initialize() -> void:
     if packer.pck_start(ProjectSettings.globalize_path(output)) != OK:
         quit(1)
         return
-    add_folder("res://Hcxmmx_Hollow_Knight_Skin")
+    # Only ship runtime resources. Workshop tools, old packages and repository
+    # documents may live next to these folders but do not belong in the mod PCK.
+    for folder in ["Animations", "Assets", "Audio", "Scenes", "Scripts"]:
+        add_folder("res://Hcxmmx_Hollow_Knight_Skin/" + folder)
     # Texture .import files refer to these generated resources. C# ships as a
     # separate DLL, so no .NET executable/solution is required for this asset pack.
     for source in imported_files:
