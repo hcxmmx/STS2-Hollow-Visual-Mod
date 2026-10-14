@@ -28,6 +28,14 @@ internal static class KnightLowHealth
         root?.GetNodeOrNull<Node>("IdleController")?.Call("request_idle");
     }
 
+    public static void RequestVictory(Node2D? root)
+    {
+        if (!GodotObject.IsInstanceValid(root) || root!.IsQueuedForDeletion()) return;
+        var controller = root.GetNodeOrNull<Node>("IdleController");
+        if (controller != null) controller.Call("request_victory");
+        else PlayAction(root, "Idle_Map");
+    }
+
     public static void Revive(Node2D? root)
     {
         root?.GetNodeOrNull<Node>("IdleController")?.Call("play_revive");

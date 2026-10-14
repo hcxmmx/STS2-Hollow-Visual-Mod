@@ -1,5 +1,7 @@
 extends Node2D
 
+const BODY_STYLE = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/BodyPresentation.gd")
+
 const ASSETS = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/ExpansionAssets.gd")
 
 const SLASH_KEYS := [0.0, 0.04, 0.08, 0.12, 0.17, 0.24, 0.28, 0.31, 0.37]
@@ -17,6 +19,7 @@ func _ready() -> void:
     body.flip_h = false
     body.position = -anchor
     add_child(body)
+    BODY_STYLE.attach(body, Vector2.ZERO, true)
     idle_at(0.0)
 
 func pose(clip: String, frame: int) -> void:

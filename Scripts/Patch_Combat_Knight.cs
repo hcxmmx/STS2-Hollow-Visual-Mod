@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Reflection;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Nodes.Combat;
@@ -64,7 +65,16 @@ internal static class NCreature_Ready_Knight_Patch
         if (player != null && string.Equals(charId, HollowGlobals.TargetCharacterId, StringComparison.OrdinalIgnoreCase))
         {
             HollowGlobals.Log("====== 🎯 目标确认！强行挂载小骑士！ ======");
-            visuals.GetNodeOrNull<Node2D>("%Visuals")?.Hide();
+            var originalBody = visuals.GetNodeOrNull<Node2D>("%Visuals");
+            if (originalBody != null)
+            {
+                // Form VFX still follow the native Spine bones. Keep the body
+                // updating and only hide its rendering, as in the Flandre skin.
+                originalBody.Show();
+                var transparent = originalBody.Modulate;
+                transparent.A = 0.0f;
+                originalBody.Modulate = transparent;
+            }
 
             if (HollowGlobals.KnightScenePreloaded != null)
             {
@@ -179,7 +189,7 @@ internal static class CreatureCmd_TriggerAnim_Knight_Patch
             case "Revive": case "revive":
                 KnightLowHealth.Revive(knightRoot); break;
             case "Victory": case "victory":
-                KnightLowHealth.PlayAction(knightRoot, "Idle_Map"); break;
+                KnightLowHealth.RequestVictory(knightRoot); break;
         }
     }
 }
@@ -196,12 +206,14 @@ internal static class NCreature_StartReviveAnim_Knight_Patch
 
 // Covers native Revive triggers too. The controller ignores duplicate calls.
 [HarmonyPatch(typeof(NCreature), nameof(NCreature.SetAnimationTrigger))]
-internal static class NCreature_SetAnimationTrigger_Revive_Knight_Patch
+internal static class NCreature_SetAnimationTrigger_Lifecycle_Knight_Patch
 {
     private static void Postfix(NCreature __instance, string trigger)
     {
         if (string.Equals(trigger, "Revive", StringComparison.OrdinalIgnoreCase))
             KnightLowHealth.Revive(__instance.Visuals?.GetNodeOrNull<Node2D>("Knight_Root"));
+        else if (string.Equals(trigger, "Victory", StringComparison.OrdinalIgnoreCase))
+            KnightLowHealth.RequestVictory(__instance.Visuals?.GetNodeOrNull<Node2D>("Knight_Root"));
     }
 }
 
@@ -232,9 +244,21 @@ internal static class NCreature_AnimDie_Knight_Patch
 // ==========================================
 // 🏆 胜利结算协议：小骑士
 // ==========================================
-[HarmonyPatch(typeof(MegaCrit.Sts2.Core.Combat.CombatManager), "EndCombatInternal", new Type[0])]
+[HarmonyPatch]
 internal static class CombatManager_EndCombatInternal_Knight_Patch
 {
+    private static MethodBase TargetMethod()
+    {
+        // New builds end combat through the turn-state overload; older builds
+        // expose only the parameterless entry point. Patch exactly one method.
+        var methods = typeof(MegaCrit.Sts2.Core.Combat.CombatManager)
+            .GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)
+            .Where(method => method.Name == "EndCombatInternal")
+            .ToArray();
+        return methods.SingleOrDefault(method => method.GetParameters().Length == 1)
+            ?? methods.Single(method => method.GetParameters().Length == 0);
+    }
+
     private static void Prefix()
     {
         HollowGlobals.Log("🏆 战斗结束，小骑士准备切换胜利姿态...");
@@ -257,7 +281,7 @@ internal static class CombatManager_EndCombatInternal_Knight_Patch
 
                 if (GodotObject.IsInstanceValid(a1))
                 {
-                    KnightLowHealth.PlayAction(visuals.GetNodeOrNull<Node2D>("Knight_Root"), "Idle_Map");
+                    KnightLowHealth.RequestVictory(visuals.GetNodeOrNull<Node2D>("Knight_Root"));
                 }
             }
         }

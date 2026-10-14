@@ -1,5 +1,7 @@
 extends Node2D
 
+const BODY_STYLE = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/BodyPresentation.gd")
+
 const ACTOR = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/ExpansionActor.gd")
 const FOCUS = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/FocusBurstEffect.gd")
 const ASSETS = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/ExpansionAssets.gd")
@@ -118,6 +120,7 @@ func update_visuals() -> void:
     home.scale = Vector2(0.20 * facing, 0.20)
     home.call("idle_at", maxf(clock, 0.0))
     sample_home(clock)
+    BODY_STYLE.set_ground(home.get("body"), self, 0.0)
     var done := clock >= duration()
     for key in entries:
         var entry: Dictionary = entries[key]
@@ -185,6 +188,7 @@ func sample_target(entry: Dictionary, time: float) -> void:
         color = Color.WHITE
     var disappear := 1.0 - smoothstep(0.0, 0.18, tail) if not actual and tail >= 0.0 else 1.0
     var sprite: Sprite2D = ghost.get("body")
+    BODY_STYLE.set_ground(sprite, self, at.y)
     sprite.modulate = Color(color.r, color.g, color.b, color.a * sprite.modulate.a * disappear)
     var flash: Sprite2D = entry["flash"]
     flash.visible = actual and tail >= 0.0 and tail < 0.18

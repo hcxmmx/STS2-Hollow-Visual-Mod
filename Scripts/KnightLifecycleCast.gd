@@ -1,5 +1,7 @@
 extends Node2D
 
+const BODY_STYLE = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/BodyPresentation.gd")
+
 const ASSETS = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/ExpansionAssets.gd")
 const SHADE_SHADER = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/KnightVoidShade.gdshader")
 const CLIPS := {"Idle": "KnightIdle", "Death": "KnightDeath", "Shade": "KnightShade", "Burst": "KnightVoidBurst", "Wake": "KnightWake", "Flash": "Flash"}
@@ -20,6 +22,7 @@ func _ready() -> void:
     body = Sprite2D.new()
     body.flip_h = true
     add_child(body)
+    BODY_STYLE.attach(body, Vector2.ZERO, false)
     ghost = cropped_sprite()
     # Use sibling order: above the stage background and behind the living body.
     move_child(ghost, 0)

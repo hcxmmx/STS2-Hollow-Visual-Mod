@@ -1,5 +1,7 @@
 extends Node
 
+const BODY_STYLE = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/BodyPresentation.gd")
+
 const ASSETS = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/ExpansionAssets.gd")
 
 const SHADOW = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/ShadowDashEffect.gd")
@@ -20,6 +22,7 @@ var player: AnimationPlayer
 var low_health := false
 var dead := false
 var relaxed := false
+var victory_pending := false
 var managed_action := false
 var body: AnimatedSprite2D
 var effect_defaults: Array[Dictionary] = []
@@ -44,6 +47,7 @@ func _ready() -> void:
     var foot := Vector2(area.get_center().x, area.end.y) - idle.get_size() * 0.5
     foot.x = -foot.x
     world_foot = marker.position + foot
+    BODY_STYLE.attach(body, foot, false)
     shadow.position = foot
     lifecycle = LIFECYCLE.new()
     lifecycle.name = "KnightDeathRevive"
@@ -71,6 +75,23 @@ func request_idle() -> void:
         player.clear_queue()
         player.queue(idle_name())
 
+func request_victory() -> void:
+    if relaxed or victory_pending:
+        return
+    victory_pending = true
+    try_victory()
+
+func try_victory() -> bool:
+    if not victory_pending or dead or lifecycle_state != "" or is_instance_valid(special_owner):
+        return false
+    var current := player.current_animation
+    if player.is_playing() and current not in ["Idle", "Idle_Low", "RESET"] and player.has_animation(current):
+        if player.get_animation(current).loop_mode == Animation.LOOP_NONE:
+            return false
+    victory_pending = false
+    play_action("Idle_Map")
+    return true
+
 func play_action(action: String) -> void:
     if action == "Revive":
         play_revive()
@@ -90,6 +111,8 @@ func play_action(action: String) -> void:
     lifecycle.call("clear")
     managed_action = true
     dead = action == "Death"
+    if dead:
+        victory_pending = false
     relaxed = action == "Idle_Map"
     # Low idle's alignment offset must not leak into an attack or skill.
     player.clear_queue()
@@ -155,6 +178,7 @@ func finish_revive() -> void:
     player.speed_scale = 1.0
     player.play(idle_name())
     player.advance(0.0)
+    try_victory()
 
 func clean_effects() -> void:
     if is_instance_valid(shadow):
@@ -178,6 +202,8 @@ func _on_finished(_animation: StringName) -> void:
         player.play(idle_name())
 
 func _process(delta: float) -> void:
+    if victory_pending:
+        try_victory()
     if is_instance_valid(special_owner):
         body.visible = false
     if lifecycle_state != "":
@@ -237,6 +263,10 @@ func release_special(cast: Node, revision: int, _finished: bool) -> void:
         player.speed_scale = 1.0
         player.play(idle_name())
         player.advance(0.0)
+        if _finished:
+            # The finishing cast must not cancel itself when victory starts.
+            active_attack_casts.erase(cast)
+            try_victory()
 
 func _exit_tree() -> void:
     cancel_attack_casts()

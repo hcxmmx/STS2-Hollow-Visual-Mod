@@ -1,5 +1,7 @@
 extends Node2D
 
+const BODY_STYLE = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/BodyPresentation.gd")
+
 const ASSETS = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/ExpansionAssets.gd")
 
 const FALL_TIME := 0.45
@@ -35,6 +37,7 @@ func _ready() -> void:
     var texture := body.sprite_frames.get_frame_texture("Idle", 0)
     foot = _texture_foot(texture)
     world_foot = Vector2(300, -265) + foot
+    BODY_STYLE.attach(body, foot, true)
     for i in range(6):
         death_frames.append(load("res://Hcxmmx_Hollow_Knight_Skin/Assets/SeniorLifecycle/HK Prime Cln_death/HK Prime Cln_death%04d.png" % i))
     for i in range(5):
@@ -42,6 +45,7 @@ func _ready() -> void:
     overlay = Sprite2D.new()
     vessel.get_node("Marker_Prime").add_child(overlay)
     overlay.visible = false
+    BODY_STYLE.attach(overlay, foot, true)
     _build_focus(texture)
     focus_root.visible = false
 

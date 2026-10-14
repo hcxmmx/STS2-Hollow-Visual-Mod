@@ -1,5 +1,7 @@
 extends Node2D
 
+const BODY_STYLE = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/BodyPresentation.gd")
+
 const ASSETS = preload("res://Hcxmmx_Hollow_Knight_Skin/Scripts/ExpansionAssets.gd")
 const CLIPS := {"Idle":"KnightIdle", "Cast":"KnightSoulCast", "Quake":"KnightQuake", "DarkQuake":"KnightDarkQuake", "Jump":"KnightJump", "Up":"KnightUp"}
 var body: Sprite2D
@@ -14,6 +16,8 @@ func _ready() -> void:
     body = Sprite2D.new()
     body.flip_h = true
     add_child(body)
+    BODY_STYLE.attach(body, Vector2.ZERO, false)
+    BODY_STYLE.set_ground(body, get_parent() as Node2D, 0.0)
     idle_at(0.0)
 
 func pose(clip: String, frame: int, grounded: bool = false) -> void:
